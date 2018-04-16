@@ -1,3 +1,5 @@
+http://blog.tylerbuchea.com/super-simple-react-redux-application-example/
+
   npm start
     Starts the development server.
 

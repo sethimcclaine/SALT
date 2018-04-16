@@ -1,0 +1,44 @@
+@import '../../../assets/styles/variables.scss';
+
+.astro {
+
+    .drop-zone-message {
+        display: flex;
+        flex: 1;
+        align-items: center;
+        justify-content: center;
+        color: $icon-upload-message-color;
+        font-size: $base-font-size;
+        font-weight: lighter;
+    }
+
+    .drop-zone {
+        display: flex;
+        flex-flow: column nowrap;
+        height: $icon-upload-zone-height;
+        border: 2px dashed $default-table-border-color;
+
+        &[disabled] {
+            background-color: $disabled-field-background-color;
+        }
+
+        &:hover {
+            width: $full-width;
+            border-color: $form-highlight-color;
+            cursor: pointer;
+
+            .drop-zone-message {
+                color: $form-highlight-color;
+            }
+
+            &[disabled] {
+                cursor: no-drop;
+                border-color: $default-table-border-color;
+
+                .drop-zone-message span {
+                    color: $icon-upload-message-color;
+                }
+            }
+        }
+    }
+}
