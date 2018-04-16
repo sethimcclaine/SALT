@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 //import { PATH } from './constants';
 const PATH = {
@@ -7,11 +7,10 @@ const PATH = {
 }
 
 
-const NavBar = (props) => (
+export default (props) => (
   <ul>
     <li><Link to={ PATH.list }>List</Link></li>
     <li><Link to={ PATH.more }> More Info</Link></li>
+    <li><Link to="/img">Image Resizer (PrintFection)</Link></li>
   </ul>
 );
-
-export default NavBar;

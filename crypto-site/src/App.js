@@ -9,7 +9,8 @@ import { history } from './utils/history';
 import NavBar from './components/nav-bar';
 import List from './views/list';
 import MoreInfo from './views/more-info';
-
+//PrintFection
+import Img from './views/img'
 
 class App extends Component {
   render() {
@@ -21,6 +22,7 @@ class App extends Component {
             <Switch>
                 <Route path={ PATH.list } component={ List }></Route>
                 <Route path={ PATH.more } component={ MoreInfo }></Route>
+                <Route path="/img" component={ Img }></Route>
                 <Redirect from={ PATH.base } to={ PATH.list }/>
             </Switch>
           </div>
