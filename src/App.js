@@ -3,14 +3,14 @@ import './App.css';
 import React, { Component } from 'react';
 import { Router, Redirect, Route, Switch } from 'react-router-dom';
 
-import { PATH } from './constants';
-import { history } from './utils/history';
+import { PATH } from 'src/constants';
+import { history } from 'src/utils/history';
 
-import NavBar from './components/nav-bar';
-import List from './views/list';
-import MoreInfo from './views/more-info';
+import NavBar from 'src/components/nav-bar';
+import List from 'src/views/list';
+import MoreInfo from 'src/views/more-info';
 //PrintFection
-import Img from './views/img'
+import Img from 'src/views/img'
 
 class App extends Component {
   render() {

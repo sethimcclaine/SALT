@@ -1,0 +1,28 @@
+//@import '../../assets/styles/variables.scss';
+
+.drop-zone-message {
+    display: flex;
+    flex: 1;
+    align-items: center;
+    justify-content: center;
+    color: $light-grey;
+    font-size: $base-font-size;
+    font-weight: lighter;
+}
+
+.drop-zone {
+    display: flex;
+    flex-flow: column nowrap;
+    height: $icon-upload-zone-height;
+    border: 2px dashed $dark-grey;
+}
+
+.drop-zone-message:hover {
+    color: $form-highlight-color;
+}
+
+.drop-zone:hover {
+    width: $full-width;
+    border-color: $form-highlight-color;
+    cursor: pointer;
+}
