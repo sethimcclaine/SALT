@@ -1,4 +1,4 @@
-import './file-input.scss';
+import './file-input.css';
 
 import React from 'react';
 import PropTypes from 'prop-types';

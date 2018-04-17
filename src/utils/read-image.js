@@ -20,7 +20,6 @@ const readImage = (file, imgSize, onSuccess, onError) => {
             const ctx = canvas.getContext('2d');
 
             ctx.drawImage(img, 0, 0, canvas.height, canvas.width);
-
             onSuccess(canvas.toDataURL());
         };
     };

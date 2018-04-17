@@ -1,4 +1,4 @@
-import './icon-upload.scss';
+import './icon-upload.css';
 
 import React from 'react';
 import PropTypes from 'prop-types';
@@ -20,6 +20,7 @@ export class IconUpload extends React.Component {
             uploadedFile: null,
             message: null,
         };
+
         this.handleAccept = this.handleAccept.bind(this);
         this.handleReject = this.handleReject.bind(this);
     }
@@ -30,20 +31,14 @@ export class IconUpload extends React.Component {
      */
     handleAccept(acceptedFiles) {
         const {
-            icon: {
-                size,
-            },
+            iconSize,
             onChange,
         } = this.props;
 
         if (acceptedFiles.length !== 0) {
             const file = acceptedFiles[0];
-            const iconSize = {
-                height: size,
-                width: size,
-            };
             const onSuccess = (dataURL) => {
-                onChange(dataURL.replace(/^data:image\/\w+;base64,/, ''));
+                onChange(dataURL);
                 this.setState({
                     uploadedFile: file.name,
                 });
@@ -72,8 +67,9 @@ export class IconUpload extends React.Component {
             handleReject,
             props: {
                 isEditable,
-                icon: {
-                    size,
+                iconSize: {
+                    height,
+                    width,
                 },
             },
             state: {
@@ -81,7 +77,6 @@ export class IconUpload extends React.Component {
                 message,
             },
         } = this;
-
         return (
             <FileInput
                 types='image/jpeg, image/png, image/jpg'
@@ -93,7 +88,7 @@ export class IconUpload extends React.Component {
                         { uploadedFile }
                     </div>
                 ) : (
-                  <div>Drag and drop an {size} x {size} icon</div>
+                  <div>{ message || (<span>Drag and drop an {height} x {width} icon</span>) }</div>
                 )}
             </FileInput>
         );

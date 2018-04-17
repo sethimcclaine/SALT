@@ -1,0 +1,39 @@
+.drop-zone-message {
+    display: flex;
+    flex: 1;
+    align-items: center;
+    justify-content: center;
+    color: blue;
+    font-size: 14px;
+    font-weight: lighter;
+}
+
+.drop-zone {
+    display: flex;
+    flex-flow: column nowrap;
+    height: 100px;
+    border: 2px dashed lightblue;
+}
+
+.drop-zone &[disabled] {
+    background-color: lightgrey;
+}
+
+.drop-zone &:hover {
+    width: 100%;
+    border-color: blue;
+    cursor: pointer;
+}
+
+.drop-zone &:hover .drop-zone-message {
+    color: blue;
+}
+
+.drop-zone &:hover&[disabled] {
+    cursor: no-drop;
+    border-color: lightblue;
+}
+
+.drop-zone &:hover&[disabled] .drop-zone-message span {
+    color: blue;
+}
