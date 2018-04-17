@@ -2,7 +2,7 @@ import './img.css';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import IconUpload from 'src/components/icon-upload/index'
+import IconUpload from 'src/components/icon-upload';
 
 class Img extends React.Component {
   constructor(props) {
@@ -21,6 +21,10 @@ class Img extends React.Component {
     this.quickSet = this.quickSet.bind(this);
   }
 
+  /**
+   * handle the dataUri after the image has been loaded and modified
+   * @param {string} dataUri
+   */
   handleImageChange(dataUri) {
     console.log(dataUri);
     this.setState({
@@ -28,6 +32,10 @@ class Img extends React.Component {
     });
   }
 
+  /**
+   * handle text input updates for the size of
+   * @param {obj} target
+   */
   handleSizechange({target}) {
     const state = this.state.linked ? {
       height: target.value,
@@ -38,6 +46,10 @@ class Img extends React.Component {
     this.setState(state);
   }
 
+  /**
+   * handle click of link/unlink button
+   * - updates `linked` state
+   */
   handleLink() {
     const state = {
       linked: !this.state.linked,
@@ -50,6 +62,11 @@ class Img extends React.Component {
     this.setState(state);
   }
 
+  /**
+   * handle click of quickSet buttons
+   * - updates `height` and `width` state with the value of the button clicked
+   * @param {obj} target
+   */
   quickSet({target}) {
     this.setState({
       height: target.value,

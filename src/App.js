@@ -7,10 +7,10 @@ import { PATH } from 'src/constants';
 import { history } from 'src/utils/history';
 
 import NavBar from 'src/components/nav-bar';
-import List from 'src/views/list';
+import Overview from 'src/views/overview';
 import MoreInfo from 'src/views/more-info';
 //PrintFection
-import Img from 'src/views/img'
+import Img from 'src/views/img/index';
 
 class App extends Component {
   render() {
@@ -20,10 +20,10 @@ class App extends Component {
           <div className="router">
             <Route path={ PATH.base } component={ NavBar }></Route>
             <Switch>
-                <Route path={ PATH.list } component={ List }></Route>
+                <Route path={ PATH.overview } component={ Overview }></Route>
                 <Route path={ PATH.more } component={ MoreInfo }></Route>
-                <Route path="/img" component={ Img }></Route>
-                <Redirect from={ PATH.base } to={ PATH.list }/>
+                <Route path={ PATH.img } component={ Img }></Route>
+                <Redirect from={ PATH.base } to={ PATH.overview }/>
             </Switch>
           </div>
         </Router>

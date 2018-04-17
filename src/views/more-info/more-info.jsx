@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 const MoreInfo = (props) => (
   <div>
     <h2>More Info</h2>
-
+    https://min-api.cryptocompare.com/data/histominute?fsym=BTC&tsym=GBP&limit=10
   </div>
 );
 

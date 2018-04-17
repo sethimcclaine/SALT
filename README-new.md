@@ -9,6 +9,6 @@ http://blog.tylerbuchea.com/super-simple-react-redux-application-example/
   npm test
     Starts the test runner.
 
-  npm run eject
+*Complete - npm run eject
     Removes this tool and copies build dependencies, configuration files
     and scripts into the app directory. If you do this, you can’t go back!
