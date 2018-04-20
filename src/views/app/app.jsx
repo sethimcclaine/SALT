@@ -1,4 +1,4 @@
-import './App.css';
+import './app.css';
 
 import React, { Component } from 'react';
 import { Router, Redirect, Route, Switch } from 'react-router-dom';
@@ -6,7 +6,7 @@ import { Router, Redirect, Route, Switch } from 'react-router-dom';
 import { PATH } from 'src/constants';
 import { history } from 'src/utils/history';
 
-import { getCoinList } from 'src/utils/api';
+//import { getCoinList } from 'src/utils/api';
 
 import NavBar from 'src/components/nav-bar';
 import Overview from 'src/views/overview';
@@ -15,21 +15,21 @@ import MoreInfo from 'src/views/more-info';
 import Img from 'src/views/img/index';
 
 class App extends Component {
-  /*
     constructor() {
       super();
-      this.state = {
-        coinList: null,
-      }
     }
+
     componentWillMount() {
+      this.props.setCoinList();
+      /*
       getCoinList().then((data) => {
+        debugger;
         this.setState({
           coinList: data,
         });
       })
+      */
     }
-    */
   render() {
     return (
       <div className="App">

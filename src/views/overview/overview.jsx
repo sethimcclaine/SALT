@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import React from 'react';
+//import PropTypes from 'prop-types';
 import { getOverview } from 'src/utils/api';
 
 //https://min-api.cryptocompare.com/
@@ -21,8 +21,7 @@ class Overview extends React.Component {
     const {
       apiData,
     } = this.state;
-    console.log(apiData);
-    debugger;
+    console.warn(apiData);
     return (
       <div>
         <h2>Currency Overview (overview.jsx)</h2>
