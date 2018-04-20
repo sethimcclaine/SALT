@@ -1,9 +1,11 @@
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import Overview from './overview';
+import {
+  setSelctedCoins,
+} from 'src/actions/app-action-creators';
 
-const mapStateToProps = ({ appReducer }) => {
-
+const mapStateToProps = (appReducer) => {
     return {
         appReducer,
     };
@@ -11,7 +13,7 @@ const mapStateToProps = ({ appReducer }) => {
 
 const mapDispatchToProps = (dispatch) => {
     return bindActionCreators({
-        //goToRoute,
+        setSelctedCoins,
     }, dispatch);
 };
 

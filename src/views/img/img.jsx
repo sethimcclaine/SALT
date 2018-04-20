@@ -137,7 +137,7 @@ class Img extends React.Component {
               <textarea>{dataUri}</textarea>
             </div>
             <div>
-              <img src={dataUri}/>
+              <img src={dataUri} alt="sample output"/>
             </div>
           </div>
         )}

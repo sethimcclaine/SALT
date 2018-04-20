@@ -1,0 +1,19 @@
+.coin-selector {
+  float: left;
+  list-style: none;
+}
+
+.coin-selector li {
+  cursor: pointer;
+}
+
+.coin-selector li:hover {
+  color: green;
+}
+
+.coin-selector li.selected:hover {
+  color: red;
+}
+.coin-selector .selected {
+  color: green;
+}

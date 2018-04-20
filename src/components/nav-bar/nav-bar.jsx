@@ -1,6 +1,6 @@
 import './nav-bar.css'
 import React from 'react';
-import PropTypes from 'prop-types';
+//import PropTypes from 'prop-types';
 
 import { Link } from 'react-router-dom';
 import { PATH } from 'src/constants';

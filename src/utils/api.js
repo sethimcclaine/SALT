@@ -7,7 +7,7 @@ const baseGetConfig = {
         Accept: 'application/json',
     },
 };
-
+/*
 const basePostConfig = {
     method: 'POST',
     credentials: 'same-origin',
@@ -17,6 +17,7 @@ const basePostConfig = {
         'Content-Type': 'application/json',
     },
 };
+*/
 
 if (!window.fetch) {
     window.fetch = iFetch;
@@ -38,10 +39,12 @@ const getFetch = (url) => fetch(url, baseGetConfig);
    * @param  {object} body The POST body to send
    * @return {Promise}     A fetch Promise
    */
+   /*
 const postFetch = (url, body) => fetch(url, {
     ...basePostConfig,
     body: JSON.stringify(body),
 })
+*/
 
 /**
  * default for handling api responses
@@ -62,8 +65,9 @@ const callWith = (query) =>
         throw new Error(error);
     });
 
-export const getOverview = () =>
-    callWith('https://min-api.cryptocompare.com/data/pricemulti?fsyms=BTC,ETH&tsyms=USD,EUe');
+export const getPriceMulti = (selectedCoins) => {
+    return callWith('https://min-api.cryptocompare.com/data/pricemulti?fsyms=' + selectedCoins.join(',') + '&tsyms=USD,EUe');
+}
 
 export const getMoreInfo = () =>
     callWith('https://min-api.cryptocompare.com/data/histominute?fsym=BTC&tsym=GBP&limit=30');

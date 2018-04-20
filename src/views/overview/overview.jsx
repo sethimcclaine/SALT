@@ -1,38 +1,96 @@
 import React from 'react';
-//import PropTypes from 'prop-types';
-import { getOverview } from 'src/utils/api';
+import { getPriceMulti } from 'src/utils/api';
+import {
+  isEmpty,
+  forEachObjIndexed,
+  path,
+} from 'ramda';
+import CoinSelector from 'src/components/coin-selector';
 
 //https://min-api.cryptocompare.com/
 class Overview extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      apiData: null,
-    }
+      apiData: {},
+    };
+
+    this.createRows = this.createRows.bind(this);
+    this.coinListClick = this.coinListClick.bind(this);
   }
+
   componentWillMount() {
-    getOverview().then((apiData) => {
+    getPriceMulti(this.props.appReducer.selectedCoins).then((apiData) => {
       this.setState({apiData});
     });
+  }
 
+  componentWillReceiveProps(nextProps) {
+    if(nextProps.appReducer.selectedCoins !== this.props.appReducer.selectedCoins) {
+      getPriceMulti(nextProps.appReducer.selectedCoins).then((apiData) => {
+        this.setState({apiData});
+      });
+    }
+  }
+
+  updatePrices() {
+
+  }
+
+  createRows(key, value) {
+    const rows = [];
+
+    forEachObjIndexed((value, key) => {
+      rows.push((
+        <tr key={key}>
+          <td>{ path([key, 'CoinName'],this.props.appReducer.coinList) }</td>
+          <td>{ key }</td>
+          <td>{ value.USD }</td>
+          <td>{ (value.USD / this.props.appReducer.bitCoin).toFixed(8) }</td>
+        </tr>
+      ));
+    }, this.state.apiData);
+    return rows;
+  }
+
+  coinListClick({currentTarget}) {
+    this.props.setSelctedCoins(currentTarget.attributes.value.nodeValue);
   }
 
   render() {
     const {
       apiData,
     } = this.state;
-    console.warn(apiData);
+    const {
+      coinList,
+      selectedCoins
+    } = this.props.appReducer;
+
     return (
       <div>
         <h2>Currency Overview (overview.jsx)</h2>
-        { apiData ? (
+        {/*
+          https://min-api.cryptocompare.com/data/pricemulti?fsyms=BTC,ETH&tsyms=USD,EUR
+          Litecoin, Dogecoin, and Monero
+          */}
+        <CoinSelector coinList={coinList} selectedCoins={selectedCoins} onClick={this.coinListClick}/>
+        { isEmpty(apiData) ? (
           <span>Loading...</span>
         ) : (
           <table>
+            <thead>
+              <tr>
+                <th>CoinName</th>
+                <th>Symbol</th>
+                <th>Price ($)</th>
+                <th>Bitcoin Value</th>
+              </tr>
+            </thead>
+            <tbody>
+              { this.createRows() }
+            </tbody>
           </table>
         )}
-        https://min-api.cryptocompare.com/data/pricemulti?fsyms=BTC,ETH&tsyms=USD,EUR
-        Litecoin, Dogecoin, and Monero
       </div>
     )
   }
