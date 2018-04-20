@@ -26,9 +26,11 @@ export const CoinSelector = (props) => {
   }
 
   return (
-    <ul className="coin-selector">
-      { listCoins() }
-    </ul>
+    <div className="coin-selector">
+      <ul>
+        { listCoins() }
+      </ul>
+    </div>
   );
 }
 

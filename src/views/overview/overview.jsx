@@ -63,7 +63,7 @@ class Overview extends React.Component {
     } = this.props.appReducer;
 
     return (
-      <div>
+      <div className="overview">
         <h2>Currency Overview (overview.jsx)</h2>
         {/*
           https://min-api.cryptocompare.com/data/pricemulti?fsyms=BTC,ETH&tsyms=USD,EUR

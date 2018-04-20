@@ -1,8 +1,12 @@
 .coin-selector {
   float: left;
+  overflow-y: scroll;
+  height: 100vh;
+  width: 385px;
+}
+.coin-selector ul {
   list-style: none;
 }
-
 .coin-selector li {
   cursor: pointer;
 }

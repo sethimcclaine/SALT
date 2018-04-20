@@ -1,11 +1,9 @@
+import './more-info.css';
 import React from 'react';
 import { getHistoryMinute } from 'src/utils/api';
-import { isEmpty } from 'ramda';
+import { forEach, pathOr } from 'ramda';
 import CoinSelector from 'src/components/coin-selector';
 import Chart from 'chart.js';
-//import PropTypes from 'prop-types';
-
-//https://min-api.cryptocompare.com/
 
 class MoreInfo extends React.Component {
   constructor(props) {
@@ -24,48 +22,57 @@ class MoreInfo extends React.Component {
     });
   }
 
+  componentWillReceiveProps(nextProps) {
+    if(nextProps.appReducer.selectedCoin !== this.props.appReducer.selectedCoin) {
+      getHistoryMinute(nextProps.appReducer.selectedCoin).then((resp) => {
+        this.setState({apiData: resp.Data});
+        this.setChart();
+      });
+    }
+  }
+
+
   coinListClick({currentTarget}) {
-    //this.props.setSelectedCoin(currentTarget.attributes.value.nodeValue);
+    this.props.setSelectedCoin(currentTarget.attributes.value.nodeValue);
   }
 
   setChart() {
-    const myChart = new Chart(document.getElementById('myChart'), {
-      type: 'bar',
+    const labels = [];
+    const high = [];
+    const low = [];
+
+    forEach((value) => {
+      const date = new Date();
+      date.setUTCSeconds(value.time);
+      labels.push( date.getUTCHours() + ':' + date.getUTCMinutes()); //time
+      high.push(value.high);
+      low.push(value.low);
+    }, this.state.apiData);
+
+    //https://www.chartjs.org/docs/latest/charts/line.html
+    new Chart(document.getElementById('myChart'), {
+      type: 'line',
       data: {
-          labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
-          datasets: [{
-              label: '# of Votes',
-              data: [12, 19, 3, 5, 2, 3],
-              backgroundColor: [
-                  'rgba(255, 99, 132, 0.2)',
-                  'rgba(54, 162, 235, 0.2)',
-                  'rgba(255, 206, 86, 0.2)',
-                  'rgba(75, 192, 192, 0.2)',
-                  'rgba(153, 102, 255, 0.2)',
-                  'rgba(255, 159, 64, 0.2)'
-              ],
-              borderColor: [
-                  'rgba(255,99,132,1)',
-                  'rgba(54, 162, 235, 1)',
-                  'rgba(255, 206, 86, 1)',
-                  'rgba(75, 192, 192, 1)',
-                  'rgba(153, 102, 255, 1)',
-                  'rgba(255, 159, 64, 1)'
-              ],
-              borderWidth: 1
-          }]
+          labels,
+          xAxisID: 'Value ($USD)',
+          yAxisID: 'Time',
+          datasets:[{
+            label: "high",
+            data: high,
+            fill: false,
+            borderColor: "rgb(75, 192, 192)",
+            lineTension: 0.1
+          },{
+            label: "low",
+            data: low,
+            fill: false,
+            borderColor: "rgb(240,128,128)",
+            lineTension: 0.1
+          },
+        ],
       },
-      options: {
-          scales: {
-              yAxes: [{
-                  ticks: {
-                      beginAtZero:true
-                  }
-              }]
-          }
-      }
+      options: {}
     });
-    return myChart;
   }
 
   render() {
@@ -78,17 +85,16 @@ class MoreInfo extends React.Component {
     } = this.props.appReducer
 
     return (
-      <div>
-        <h2>More Info</h2>
-        https://min-api.cryptocompare.com/data/histominute?fsym=BTC&tsym=GBP&limit=10
-
-        <canvas id="myChart" width="400" height="400"></canvas>
+      <div className="more-info">
+        <h2>More Info for { pathOr(selectedCoin, [selectedCoin, 'FullName'], coinList) }</h2>
+        {/* https://min-api.cryptocompare.com/data/histominute?fsym=BTC&tsym=GBP&limit=10 */}
+        <div className="chart-container">
+          <canvas id="myChart"/>
+        </div>
         <CoinSelector coinList={coinList} selectedCoins={selectedCoin} onClick={this.coinListClick}/>
       </div>
     );
   }
 };
-
-MoreInfo.propTypes = { };
 
 export default MoreInfo;

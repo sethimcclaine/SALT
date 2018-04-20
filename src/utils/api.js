@@ -65,6 +65,8 @@ const callWith = (query) =>
         throw new Error(error);
     });
 
+//https://min-api.cryptocompare.com/
+
 export const getPriceMulti = (selectedCoins) => {
     return callWith('https://min-api.cryptocompare.com/data/pricemulti?fsyms=' + selectedCoins.join(',') + '&tsyms=USD,EUe');
 }

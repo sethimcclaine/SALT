@@ -7,11 +7,13 @@ import { PATH } from 'src/constants';
 
 
 export const NavBar = (props) => (
-  <ul className="nav-bar">
-    <li><Link to={ PATH.overview }>Currency Overview</Link></li>
-    <li><Link to={ PATH.more }>More Info</Link></li>
-    <li><Link to={ PATH.img }>Image Resizer (PrintFection)</Link></li>
-  </ul>
+  <div className="nav-bar">
+    <ul>
+      <li><Link to={ PATH.overview }>Currency Overview</Link></li>
+      <li><Link to={ PATH.more }>More Info</Link></li>
+      <li><Link to={ PATH.img }>Image Resizer (PrintFection)</Link></li>
+    </ul>
+  </div>
 );
 
 NavBar.propTypes = { };

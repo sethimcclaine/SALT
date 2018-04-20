@@ -32,7 +32,7 @@ const appReducer = (state = INITIAL_APP_STATE, { type, payload }) => {
             state);
 
         case ACTION_TYPES.SET_SELECTED_COIN:
-            return assoc('selectedCoin', payload);
+            return assoc('selectedCoin', payload, state);
 
         case ACTION_TYPES.SET_BITCOIN:
           return assoc('bitCoin', payload.BTC.USD, state);
