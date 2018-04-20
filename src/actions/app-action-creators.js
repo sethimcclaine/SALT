@@ -25,7 +25,16 @@ export const setBitCoin = () => {
     };
 };
 
-export const setSelctedCoins = (payload) => {
+export const setSelectedCoin = (payload) => {
+  return function(dispatch, getState) {
+    dispatch({
+      type: ACTION_TYPES.SET_SELECTED_COIN,
+      payload,
+    });
+  };
+};
+
+export const setSelectedCoins = (payload) => {
   return function(dispatch, getState) {
     //const { appReducer } = getState();
     dispatch({

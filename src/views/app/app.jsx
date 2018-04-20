@@ -6,11 +6,9 @@ import { Router, Redirect, Route, Switch } from 'react-router-dom';
 import { PATH } from 'src/constants';
 import { history } from 'src/utils/history';
 
-//import { getCoinList } from 'src/utils/api';
-
 import NavBar from 'src/components/nav-bar';
 import OverviewContainer from 'src/views/overview';
-import MoreInfo from 'src/views/more-info';
+import MoreInfoContainer from 'src/views/more-info';
 //PrintFection
 import Img from 'src/views/img/index';
 
@@ -27,7 +25,7 @@ class App extends Component {
             <Route path={ PATH.base } component={ NavBar }></Route>
             <Switch>
                 <Route path={ PATH.overview } component={ OverviewContainer }></Route>
-                <Route path={ PATH.more } component={ MoreInfo }></Route>
+                <Route path={ PATH.more } component={ MoreInfoContainer }></Route>
                 <Route path={ PATH.img } component={ Img }></Route>
                 <Redirect from={ PATH.base } to={ PATH.overview }/>
             </Switch>

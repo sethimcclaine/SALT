@@ -1,8 +1,8 @@
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import Overview from './overview';
+import MoreInfo from './more-info';
 import {
-  setSelectedCoins,
+  setSelectedCoin,
 } from 'src/actions/app-action-creators';
 
 const mapStateToProps = (appReducer) => {
@@ -13,8 +13,8 @@ const mapStateToProps = (appReducer) => {
 
 const mapDispatchToProps = (dispatch) => {
     return bindActionCreators({
-        setSelectedCoins,
+        setSelectedCoin,
     }, dispatch);
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Overview);
+export default connect(mapStateToProps, mapDispatchToProps)(MoreInfo);

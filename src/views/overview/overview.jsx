@@ -33,10 +33,6 @@ class Overview extends React.Component {
     }
   }
 
-  updatePrices() {
-
-  }
-
   createRows(key, value) {
     const rows = [];
 
@@ -54,7 +50,7 @@ class Overview extends React.Component {
   }
 
   coinListClick({currentTarget}) {
-    this.props.setSelctedCoins(currentTarget.attributes.value.nodeValue);
+    this.props.setSelectedCoins(currentTarget.attributes.value.nodeValue);
   }
 
   render() {

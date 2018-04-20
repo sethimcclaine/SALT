@@ -69,8 +69,8 @@ export const getPriceMulti = (selectedCoins) => {
     return callWith('https://min-api.cryptocompare.com/data/pricemulti?fsyms=' + selectedCoins.join(',') + '&tsyms=USD,EUe');
 }
 
-export const getMoreInfo = () =>
-    callWith('https://min-api.cryptocompare.com/data/histominute?fsym=BTC&tsym=GBP&limit=30');
+export const getHistoryMinute = (selectedCoin) =>
+    callWith('https://min-api.cryptocompare.com/data/histominute?fsym=' + selectedCoin + '&tsym=GBP&limit=30');
 
 export const getCoinList = () =>
     callWith('https://min-api.cryptocompare.com/data/all/coinlist');

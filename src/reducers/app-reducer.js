@@ -9,11 +9,11 @@ import {
 
 
 const INITIAL_APP_STATE = {
-    coinList: {},
-    view: 'overview',
-    selectedCoins: ['LTC', 'DOGE', 'XMR'],
-    selectedCoin: 'BTC',
-    bitCoin: 0,
+    coinList: {}, // Used to populate coin-selector and give names for symbols
+    view: 'overview', // Used for navigation
+    selectedCoins: ['LTC', 'DOGE', 'XMR'], // Used for overview
+    selectedCoin: 'BTC', //Used for more info
+    bitCoin: 0, // Used for to hold current value of bitcoin
 };
 
 const appReducer = (state = INITIAL_APP_STATE, { type, payload }) => {
@@ -25,15 +25,14 @@ const appReducer = (state = INITIAL_APP_STATE, { type, payload }) => {
           return assoc('coinList', payload.Data, state);
 
         case ACTION_TYPES.SET_SELECTED_COINS:
-          const tmp =  assoc('selectedCoins',
+          return assoc('selectedCoins',
             contains(payload, state.selectedCoins) ?
               remove(indexOf(payload, state.selectedCoins), 1, state.selectedCoins) :
               append(payload, state.selectedCoins),
             state);
-            console.log(state.selectedCoins);
-            console.log(tmp.selectedCoins);
-            debugger;
-            return tmp;
+
+        case ACTION_TYPES.SET_SELECTED_COIN:
+            return assoc('selectedCoin', payload);
 
         case ACTION_TYPES.SET_BITCOIN:
           return assoc('bitCoin', payload.BTC.USD, state);

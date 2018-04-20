@@ -1,3 +1,3 @@
-import MoreInfo from './more-info';
+import MoreInfoContainer from './more-info-container';
 
-export default MoreInfo;
+export default MoreInfoContainer;
